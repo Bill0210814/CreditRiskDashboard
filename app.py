@@ -6,10 +6,15 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("🏦 AI Credit Risk Intelligence Platform")
+st.title("🏦 AI-Powered Credit Risk & Default Intelligence System")
 
 st.markdown("""
-### Financial Machine Learning Final Project
+### DSF504 The Practice of Big Data and Analysis in the Financial Industry Semester Project
+
+
+
+TEAM 8  · M14B020009_Bill Lai_賴柏諺 M14B020026_Darryl Lin_林詰寶 M14B020045_Jerry Kuo_郭翔鈞
+
 
 Dataset:
 - UCI Credit Card Default Dataset
