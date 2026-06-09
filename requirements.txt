@@ -6,5 +6,3 @@ joblib
 scikit-learn
 lightgbm
 openpyxl
-shap
-matplotlib
