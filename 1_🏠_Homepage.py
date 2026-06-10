@@ -48,7 +48,7 @@ Furthermore, SHAP explainability techniques were integrated to transform the tra
 st.markdown("---")
 
 # ====================================
-# 2. 視覺化系統架構圖 (Project Workflow)
+# 2. 視覺化系統架構圖 (完美支援深/淺色模式)
 # ====================================
 st.subheader("🗺️ System Architecture & Workflow")
 st.markdown("An end-to-end AI deployment architecture from data processing to explainable risk scoring:")
@@ -57,9 +57,9 @@ col1, col2, col3, col4 = st.columns(4)
 
 with col1:
     st.markdown("""
-    <div style='background-color:#f0f2f6; padding:20px; border-radius:10px; min-height:240px;'>
-        <h4 style='margin-top:0px;'>📥 1. Data Preparation</h4>
-        <p style='font-size:13px; color:#555; line-height:1.6;'>
+    <div style='background-color: var(--secondary-background-color); border-top: 4px solid #4C72B0; padding:20px; border-radius:5px; min-height:240px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);'>
+        <h4 style='margin-top:0px; color: var(--text-color);'>📥 1. Data Preparation</h4>
+        <p style='font-size:13px; color: var(--text-color); opacity: 0.85; line-height:1.6;'>
         Cleaned raw customer data, applied strict category mapping,
         and implemented leakage-free target encoding techniques.
         </p>
@@ -67,9 +67,9 @@ with col1:
     """, unsafe_allow_html=True)
 with col2:
     st.markdown("""
-    <div style='background-color:#e1f5fe; padding:20px; border-radius:10px; min-height:240px;'>
-        <h4 style='margin-top:0px;'>⚙️ 2. Feature Engineering</h4>
-        <p style='font-size:13px; color:#555; line-height:1.6;'>
+    <div style='background-color: var(--secondary-background-color); border-top: 4px solid #55A868; padding:20px; border-radius:5px; min-height:240px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);'>
+        <h4 style='margin-top:0px; color: var(--text-color);'>⚙️ 2. Feature Engineering</h4>
+        <p style='font-size:13px; color: var(--text-color); opacity: 0.85; line-height:1.6;'>
         Developed early-warning indicators including utilization rate,
         repayment behavior, risk acceleration, and behavioral volatility.
         </p>
@@ -77,9 +77,9 @@ with col2:
     """, unsafe_allow_html=True)
 with col3:
     st.markdown("""
-    <div style='background-color:#e8f5e9; padding:20px; border-radius:10px; min-height:240px;'>
-        <h4 style='margin-top:0px;'>🧠 3. Model Development</h4>
-        <p style='font-size:13px; color:#555; line-height:1.6;'>
+    <div style='background-color: var(--secondary-background-color); border-top: 4px solid #C44E52; padding:20px; border-radius:5px; min-height:240px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);'>
+        <h4 style='margin-top:0px; color: var(--text-color);'>🧠 3. Model Development</h4>
+        <p style='font-size:13px; color: var(--text-color); opacity: 0.85; line-height:1.6;'>
         Optimized multiple machine learning models using Optuna,
         cross-validation, and overfitting control mechanisms.
         </p>
@@ -87,9 +87,9 @@ with col3:
     """, unsafe_allow_html=True)
 with col4:
     st.markdown("""
-    <div style='background-color:#fff3e0; padding:20px; border-radius:10px; min-height:240px;'>
-        <h4 style='margin-top:0px;'>🔍 4. Explainability</h4>
-        <p style='font-size:13px; color:#555; line-height:1.6;'>
+    <div style='background-color: var(--secondary-background-color); border-top: 4px solid #8172B3; padding:20px; border-radius:5px; min-height:240px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);'>
+        <h4 style='margin-top:0px; color: var(--text-color);'>🔍 4. Explainability</h4>
+        <p style='font-size:13px; color: var(--text-color); opacity: 0.85; line-height:1.6;'>
         Integrated SHAP explainability to identify key risk drivers
         and support transparent credit decision-making via dashboard.
         </p>
