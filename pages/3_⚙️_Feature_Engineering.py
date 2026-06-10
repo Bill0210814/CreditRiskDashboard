@@ -17,10 +17,15 @@ st.set_page_config(
 # ==================================================
 
 with st.sidebar:
-    st.markdown("## 🏦 AI-Powered Credit Risk & Default Intelligence System")
+
+    st.markdown(
+        "## 🏦 AI-Powered Credit Risk & Default Intelligence System"
+    )
+
     st.caption(
         "DSF504 The Practice of Big Data and Analysis in the Financial Industry Semester Project • Team 8"
     )
+
     st.markdown("---")
 
 # ==================================================
@@ -31,8 +36,8 @@ st.title("📊 Data Explorer & Feature Engineering")
 
 st.markdown("""
 This page presents dataset exploration, customer behavioral patterns,
-feature engineering strategies, and correlation analysis used to build the
-AI-powered Credit Risk Early Warning System.
+feature engineering strategies, and correlation analysis used to build
+the AI-powered Credit Risk Early Warning System.
 """)
 
 # ==================================================
@@ -54,6 +59,12 @@ with tab1:
 
     st.subheader("1. Dataset Overview")
 
+    st.image(
+        "images/dataset_overview.jpg",
+        caption="Target Variable Distribution",
+        use_container_width=True
+    )
+
     st.write("""
 The UCI Credit Card Default Dataset contains approximately 30,000 customer records,
 including demographic information, credit limits, repayment behavior,
@@ -61,17 +72,17 @@ monthly bills, and payment history.
 """)
 
     summary_df = pd.DataFrame({
-        "Metric": [
+        "Metric":[
             "Total Customers",
             "Total Features",
             "Target Variable",
             "Default Rate"
         ],
-        "Value": [
+        "Value":[
             "30,000",
             "24",
             "Default Payment Next Month",
-            "22%"
+            "22.1%"
         ]
     })
 
@@ -81,9 +92,9 @@ monthly bills, and payment history.
     )
 
     st.info("""
-💡 **Business Objective**
+💡 Business Objective
 
-The goal is to predict the probability of customer default and support:
+The goal is to predict customer default probability and support:
 
 • Credit Risk Management
 
@@ -97,12 +108,11 @@ The goal is to predict the probability of customer default and support:
 """)
 
     st.warning("""
-⚠️ **Class Imbalance Notice**
+⚠️ Class Imbalance Notice
 
-Default customers represent approximately 22% of the dataset.
+Default customers account for approximately 22% of the dataset.
 
-Therefore, ROC-AUC, F1 Score, Precision, and Recall are more meaningful
-than Accuracy when evaluating model performance.
+Therefore ROC-AUC, Precision, Recall and F1 Score are more informative than Accuracy.
 """)
 
 # ==================================================
@@ -111,26 +121,26 @@ than Accuracy when evaluating model performance.
 
 with tab2:
 
-    st.subheader("2. Demographic & Behavioral Insights")
+    st.subheader("2. Customer Profile")
 
-    st.write("""
-Static demographic variables such as gender, education level,
-and marital status provide limited predictive power compared
-with behavioral repayment features.
-""")
+    st.image(
+        "images/customer_profile.jpg",
+        caption="Default Rate Across Demographic Groups",
+        use_container_width=True
+    )
 
     demo_df = pd.DataFrame({
-        "Feature": [
+        "Feature":[
             "Gender",
             "Education",
             "Marital Status",
             "Age"
         ],
-        "Business Insight": [
-            "Minor impact",
-            "Moderate impact",
-            "Minor impact",
-            "Weak predictor"
+        "Business Insight":[
+            "Minor Impact",
+            "Moderate Impact",
+            "Minor Impact",
+            "Weak Predictor"
         ]
     })
 
@@ -140,26 +150,29 @@ with behavioral repayment features.
     )
 
     st.warning("""
-📌 **Key Finding**
+📌 Key Findings
 
-Male customers, lower education groups,
-and married customers show slightly higher default rates.
+• Male customers show slightly higher default rates
 
-However, behavioral variables remain significantly more predictive.
+• Lower education groups exhibit higher risk
+
+• Married customers show moderately higher default rates
+
+However, repayment behavior remains significantly more predictive.
 """)
 
     st.success("""
-📌 **Financial Health Indicators**
+📌 Financial Health Indicators
 
-Non-default customers typically exhibit:
+Non-default customers generally demonstrate:
 
-• Higher credit limits
+• Higher Credit Limits
 
-• Lower utilization rates
+• Lower Utilization Rates
 
-• Higher repayment coverage
+• Higher Repayment Ratios
 
-• More stable payment behavior
+• More Stable Payment Behavior
 """)
 
 # ==================================================
@@ -168,7 +181,13 @@ Non-default customers typically exhibit:
 
 with tab3:
 
-    st.subheader("3. Engineered Features")
+    st.subheader("3. Feature Engineering Strategy")
+
+    st.image(
+        "images/feature_engineering.jpg",
+        caption="Feature Engineering Framework",
+        use_container_width=True
+    )
 
     feature_df = pd.DataFrame({
 
@@ -199,14 +218,13 @@ with tab3:
     st.info("""
 ### Why Feature Engineering Matters
 
-These engineered features transform raw financial transactions into
-actionable behavioral risk indicators.
+These engineered variables transform raw financial records into meaningful behavioral indicators.
 
-They significantly improve model performance and early warning capability.
+They substantially improve prediction accuracy and early warning capability.
 """)
 
     st.success("""
-📌 **Top Risk Indicators**
+📌 Core Engineered Features
 
 1. Consecutive Delay
 
@@ -218,7 +236,7 @@ They significantly improve model performance and early warning capability.
 
 5. Risk Acceleration
 
-These features form the foundation of the LightGBM risk prediction model.
+These variables became the key drivers of the final LightGBM model.
 """)
 
 # ==================================================
@@ -227,7 +245,23 @@ These features form the foundation of the LightGBM risk prediction model.
 
 with tab4:
 
-    st.subheader("4. Feature Correlation Matrix")
+    st.subheader("4. Correlation Analysis")
+
+    st.image(
+        "images/correlation_matrix1.jpg",
+        caption="Feature Correlation Matrix",
+        use_container_width=True
+    )
+
+    st.markdown("---")
+
+    st.subheader("5. Feature Importance Analysis")
+
+    st.image(
+        "images/correlation_matrix2.jpg",
+        caption="Feature Importance Ranking",
+        use_container_width=True
+    )
 
     corr = pd.DataFrame({
 
@@ -258,9 +292,9 @@ with tab4:
     )
 
     st.info("""
-📌 **Correlation Insights**
+📌 Correlation Insights
 
-The strongest relationships are concentrated among financial behavior variables:
+The strongest relationships are concentrated among behavioral financial variables:
 
 • Utilization Rate
 
@@ -270,8 +304,7 @@ The strongest relationships are concentrated among financial behavior variables:
 
 • Repayment Ratio
 
-These findings validate our feature engineering strategy and explain why
-behavioral indicators dominate demographic variables in default prediction.
+These findings validate our feature engineering strategy.
 """)
 
     st.success("""
@@ -279,13 +312,13 @@ behavioral indicators dominate demographic variables in default prediction.
 
 Customer default risk is primarily driven by:
 
-• Repayment behavior
+• Repayment Behavior
 
-• Credit utilization
+• Credit Utilization
 
-• Payment consistency
+• Payment Consistency
 
 rather than demographic characteristics.
 
-This supports the adoption of behavior-based credit risk models.
+This strongly supports the use of behavior-based credit risk models.
 """)
