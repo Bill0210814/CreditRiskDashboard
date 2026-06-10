@@ -126,7 +126,7 @@ with tab2:
 
     st.image(
         "images/customer_profile.jpg",
-        caption="Default Rate Across Demographic Groups",
+        caption="Default Rates by Categorical Variable Groups",
         use_container_width=True
     )
 
