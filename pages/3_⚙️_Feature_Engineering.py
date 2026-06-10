@@ -81,18 +81,18 @@ monthly bills, and payment history.
             "22.1%"
         ]
     })
-
+    st.image(
+        "images/dataset_overview.jpg",
+        caption="Target Variable Distribution",
+        use_container_width=True
+    )
     st.dataframe(
         summary_df,
         use_container_width=True
     )
 
     st.info("""
-    st.image(
-        "images/dataset_overview.jpg",
-        caption="Target Variable Distribution",
-        use_container_width=True
-    )
+
 💡 Business Objective
 
 The goal is to predict customer default probability and support:
