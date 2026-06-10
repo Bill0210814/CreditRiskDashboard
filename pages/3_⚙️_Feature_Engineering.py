@@ -59,11 +59,7 @@ with tab1:
 
     st.subheader("1. Dataset Overview")
 
-    st.image(
-        "images/dataset_overview.jpg",
-        caption="Target Variable Distribution",
-        use_container_width=True
-    )
+
 
     st.write("""
 The UCI Credit Card Default Dataset contains approximately 30,000 customer records,
@@ -92,6 +88,11 @@ monthly bills, and payment history.
     )
 
     st.info("""
+    st.image(
+        "images/dataset_overview.jpg",
+        caption="Target Variable Distribution",
+        use_container_width=True
+    )
 💡 Business Objective
 
 The goal is to predict customer default probability and support:
