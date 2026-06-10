@@ -105,10 +105,9 @@ st.subheader("📊 Project Highlights & Navigation")
 # 上方放置 KPI 亮點
 c1, c2, c3, c4 = st.columns(4)
 with c1: st.metric("Dataset Size", "30,000")
-with c2: st.metric("Features Engineered", 24")  
+with c2: st.metric("Features Engineered", "24")  # 更新為您最新的特徵數量
 with c3: st.metric("Champion Model", "LightGBM")
 with c4: st.metric("Test ROC-AUC", "0.7827")
 
 st.markdown("<br>", unsafe_allow_html=True)
-
 
