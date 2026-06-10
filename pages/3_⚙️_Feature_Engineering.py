@@ -122,7 +122,7 @@ Therefore ROC-AUC, Precision, Recall and F1 Score are more informative than Accu
 
 with tab2:
 
-    st.subheader("2. Customer Profile")
+    st.subheader("⭐ Customer Profile")
 
     st.image(
         "images/customer_profile.jpg",
@@ -182,7 +182,7 @@ Non-default customers generally demonstrate:
 
 with tab3:
 
-    st.subheader("3. Feature Engineering Strategy")
+    st.subheader("⭐ Feature Engineering Strategy")
 
     st.image(
         "images/feature_engineering.jpg",
@@ -246,7 +246,7 @@ These variables became the key drivers of the final LightGBM model.
 
 with tab4:
 
-    st.subheader("4. Correlation Analysis")
+    st.subheader("⭐ Correlation Analysis")
 
     st.image(
         "images/correlation_matrix1.jpg",
@@ -256,7 +256,7 @@ with tab4:
 
     st.markdown("---")
 
-    st.subheader("5. Feature Importance Analysis")
+    st.subheader("⭐ Feature Importance Analysis")
 
     st.image(
         "images/correlation_matrix2.jpg",
