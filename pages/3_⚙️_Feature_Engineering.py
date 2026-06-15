@@ -76,7 +76,7 @@ monthly bills, and payment history.
         ],
         "Value":[
             "30,000",
-            "24",
+            "34",
             "Default Payment Next Month",
             "22.1%"
         ]
