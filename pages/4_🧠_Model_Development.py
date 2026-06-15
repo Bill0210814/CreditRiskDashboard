@@ -160,126 +160,35 @@ st.markdown("---")
 
 
 
-# ====================================
+# ==================================================
+# 4. AVERAGE PRECISION & PR CURVES (團隊官方圖表)
+# ==================================================
+st.subheader("📊 Model Performance: Average Precision & PR Curves")
 
-# 4. 評估曲線 (ROC & PR 並排顯示)
+# 匯入團隊製作的精美靜態圖表
+# 請確保圖片路徑與檔名正確
+st.image("images/pr_curves.jpg", caption="各模型 Average Precision 效能比較與 PR 曲線疊加圖", use_container_width=True)
 
-# ====================================
+st.markdown("<br>", unsafe_allow_html=True)
 
-st.subheader("📉 Evaluation Curves")
-
-
-
-fig_curves, (ax_roc, ax_pr) = plt.subplots(1, 2, figsize=(14, 5))
-
-
-
-# --- ROC Curve ---
-
-fpr, tpr, _ = roc_curve(y_test, y_prob)
-
-roc_auc = auc(fpr, tpr)
-
-
-
-ax_roc.plot(fpr, tpr, linewidth=2, color='darkorange', label=f"AUC = {roc_auc:.4f}")
-
-ax_roc.plot([0,1], [0,1], linestyle="--", color='navy')
-
-ax_roc.set_xlabel("False Positive Rate")
-
-ax_roc.set_ylabel("True Positive Rate")
-
-ax_roc.set_title("ROC Curve")
-
-ax_roc.legend(loc="lower right")
-
-
-
-# --- PR Curve ---
-
-ax_pr.plot(recall, precision, linewidth=2, color='blue', label='PR Curve')
-
-ax_pr.scatter(recall[best_idx], precision[best_idx], color='red', s=100, zorder=5, 
-
-              label=f"Best Threshold ({best_threshold:.4f})")
-
-ax_pr.set_xlabel("Recall")
-
-ax_pr.set_ylabel("Precision")
-
-ax_pr.set_title("Precision-Recall Curve")
-
-ax_pr.legend(loc="lower left")
-
-
-
-st.pyplot(fig_curves)
-
-plt.clf()
-
-
+# 依然保留數據表格，讓教授可以清楚看到精確數值
+st.subheader("📋 Model Metrics Board")
+st.dataframe(
+    comparison.style.highlight_max(subset=["Average Precision"], color="lightgreen")
+                    .format({"Average Precision": "{:.4f}", "F1": "{:.4f}"}),
+    use_container_width=True,
+    hide_index=True
+)
 
 st.markdown("---")
 
+# (原本的第 5 區塊 PR CURVE 已經與第 4 區塊的圖片合併，所以這裡直接接第 6 區塊的 LIFT GAUGE)
 
-
-# ====================================
-
-# 5. 混淆矩陣與詳細 KPI
-
-# ====================================
-
-st.subheader("🧮 Confusion Matrix")
-
-
-
-y_pred_opt = (y_prob >= best_threshold).astype(int)
-
-cm = confusion_matrix(y_test, y_pred_opt)
-
-TN, FP, FN, TP = cm.ravel()
-
-
-
-col_cm, col_kpi = st.columns([1.2, 1])
-
-
-
-with col_cm:
-
-    fig_cm, ax_cm = plt.subplots(figsize=(5, 4))
-
-    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=["Non-Default", "Default"])
-
-    disp.plot(cmap="Blues", ax=ax_cm, values_format='d')
-
-    plt.title(f"Threshold = {best_threshold:.4f}")
-
-    st.pyplot(fig_cm)
-
-    plt.clf()
-
-
-
-with col_kpi:
-
-    st.markdown("### 📌 Matrix KPIs")
-
-    st.info(f"**True Positive (TP):** {TP}\n\n*Correctly flagged as risky.*")
-
-    st.success(f"**True Negative (TN):** {TN}\n\n*Correctly identified as safe.*")
-
-    st.warning(f"**False Positive (FP):** {FP}\n\n*Safe customers wrongly flagged.*")
-
-    st.error(f"**False Negative (FN):** {FN}\n\n*Risky customers missed.*")
-
-
-
-st.markdown("---")
-
-
-
+# ==================================================
+# 5. LIFT GAUGE (原本的第 6 區塊，編號往前推)
+# ==================================================
+st.subheader("🚀 Model Lift vs Random Guess")
+# ... (下方保留你原本畫 Gauge 儀表板的程式碼) ...
 # ====================================
 
 # 6. 商業解讀
