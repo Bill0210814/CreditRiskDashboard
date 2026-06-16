@@ -29,9 +29,13 @@ st.title("📈 Model Monitoring & Governance")
 
 st.markdown("""
 Monitor model performance, evaluate generalization capability,
-and assess deployment readiness using **Average Precision (AP)**,
-which is more appropriate than ROC-AUC for imbalanced credit default datasets.
+and assess deployment readiness using **Average Precision (AP)**.
+
+Because credit default prediction is a highly imbalanced classification problem,
+Average Precision provides a more realistic assessment than ROC-AUC.
 """)
+
+st.markdown("---")
 
 # ==================================================
 # MODEL RESULTS
@@ -46,26 +50,30 @@ monitor = pd.DataFrame({
     ],
 
     "Train AP":[
-        0.545,
-        0.570,
-        0.510,
-        0.580
+        0.5424,
+        0.6550,
+        0.5126,
+        0.5920
     ],
 
     "Test AP":[
         0.5058,
         0.5445,
         0.4976,
-        0.5554]
+        0.5554
+    ]
 })
 
 monitor["Gap"] = (
     monitor["Train AP"]
     -
     monitor["Test AP"]
-).round(3)
+).round(4)
 
-baseline_ap = 0.221
+# ==================================================
+# CORE KPI
+# ==================================================
+baseline_ap = 0.2210
 
 best_model = monitor.loc[
     monitor["Test AP"].idxmax(),
@@ -74,13 +82,13 @@ best_model = monitor.loc[
 
 best_ap = monitor["Test AP"].max()
 
+lift = best_ap / baseline_ap
+
 improvement = (
     (best_ap - baseline_ap)
     /
     baseline_ap
 ) * 100
-
-avg_gap = monitor["Gap"].mean()
 
 # ==================================================
 # KPI DASHBOARD
@@ -98,19 +106,19 @@ with c1:
 with c2:
     st.metric(
         "Best AP Score",
-        f"{best_ap:.3f}"
+        f"{best_ap:.4f}"
     )
 
 with c3:
     st.metric(
         "Baseline AP",
-        f"{baseline_ap:.3f}"
+        f"{baseline_ap:.4f}"
     )
 
 with c4:
     st.metric(
-        "Improvement",
-        f"{improvement:.0f}%"
+        "Model Lift",
+        f"{lift:.2f}x"
     )
 
 st.markdown("---")
@@ -140,9 +148,9 @@ with col1:
             color="lightgreen"
         )
         .format({
-            "Train AP":"{:.3f}",
-            "Test AP":"{:.3f}",
-            "Gap":"{:.3f}"
+            "Train AP":"{:.4f}",
+            "Test AP":"{:.4f}",
+            "Gap":"{:.4f}"
         }),
         use_container_width=True
     )
@@ -167,13 +175,17 @@ with col2:
         y="AP Score",
         color="Dataset",
         barmode="group",
-        text_auto=".3f",
-        title="Average Precision Comparison"
+        text_auto=".4f",
+        title="Average Precision Comparison",
+        color_discrete_sequence=[
+            "#4C72B0",
+            "#DD8452"
+        ]
     )
 
     fig_ap.update_layout(
         height=400,
-        yaxis=dict(range=[0.4, 0.65])
+        yaxis=dict(range=[0.45,0.70])
     )
 
     st.plotly_chart(
@@ -190,12 +202,12 @@ col3, col4 = st.columns(2)
 
 with col3:
 
-    st.subheader("🎯 AP vs Baseline")
+    st.subheader("🎯 AP vs Random Baseline")
 
     compare = pd.DataFrame({
 
         "Metric":[
-            "Random Guess",
+            "Random Baseline",
             "LightGBM"
         ],
 
@@ -209,15 +221,15 @@ with col3:
         compare,
         x="Metric",
         y="Score",
-        text_auto=".3f",
         color="Metric",
+        text_auto=".4f",
         title="Average Precision vs Baseline"
     )
 
     fig_base.add_hline(
         y=baseline_ap,
         line_dash="dash",
-        annotation_text="Baseline (22.1%)"
+        annotation_text="Default Rate Baseline = 22.1%"
     )
 
     fig_base.update_layout(
@@ -232,20 +244,16 @@ with col3:
 
 with col4:
 
-    st.subheader("🚀 Improvement Over Baseline")
+    st.subheader("🚀 Improvement Gauge")
 
     gauge = go.Figure(
         go.Indicator(
             mode="gauge+number",
             value=improvement,
             number={"suffix":"%"},
-            title={
-                "text":"AP Improvement"
-            },
+            title={"text":"Improvement vs Baseline"},
             gauge={
-                "axis":{
-                    "range":[0,200]
-                },
+                "axis":{"range":[0,200]},
                 "steps":[
                     {
                         "range":[0,50],
@@ -264,9 +272,7 @@ with col4:
         )
     )
 
-    gauge.update_layout(
-        height=400
-    )
+    gauge.update_layout(height=400)
 
     st.plotly_chart(
         gauge,
@@ -278,14 +284,14 @@ st.markdown("---")
 # ==================================================
 # OVERFITTING ANALYSIS
 # ==================================================
-st.subheader("⚠️ Overfitting Gap Analysis")
+st.subheader("⚠️ Generalization Audit")
 
 fig_gap = px.bar(
     monitor.sort_values("Gap"),
     x="Model",
     y="Gap",
     color="Gap",
-    text_auto=".3f",
+    text_auto=".4f",
     color_continuous_scale="Oranges",
     title="Train-Test AP Gap"
 )
@@ -302,56 +308,84 @@ st.plotly_chart(
 st.info("""
 Smaller gaps indicate stronger generalization capability.
 
-Although Random Forest achieves competitive AP performance,
-its Train-Test Gap is larger than LightGBM.
+Random Forest achieves competitive predictive power but exhibits
+a larger Train-Test gap.
 
-LightGBM provides the best balance between predictive power
-and deployment robustness.
+LightGBM delivers the strongest balance between predictive performance
+and robustness.
 """)
 
 st.markdown("---")
 
 # ==================================================
-# BUSINESS INTERPRETATION
+# WHY AP?
+# ==================================================
+st.subheader("🎯 Why Average Precision Instead of ROC-AUC?")
+
+st.warning(f"""
+### Credit Risk Perspective
+
+The dataset contains only **22.1% default customers**.
+
+For highly imbalanced classification problems:
+
+• ROC-AUC can sometimes appear optimistic because it evaluates ranking performance across all thresholds.
+
+• Average Precision (AP) focuses directly on identifying the minority default class.
+
+• AP therefore provides a more realistic measure of risk detection quality.
+
+### Performance Comparison
+
+Random Baseline AP = **{baseline_ap:.4f}**
+
+LightGBM AP = **{best_ap:.4f}**
+
+Absolute Improvement = **{best_ap - baseline_ap:.4f}**
+
+Model Lift = **{lift:.2f}x**
+
+This means the model identifies high-risk borrowers more than
+2.5 times better than random selection.
+""")
+
+st.markdown("---")
+
+# ==================================================
+# EXECUTIVE SUMMARY
 # ==================================================
 st.subheader("💼 Executive Interpretation")
 
 st.success(f"""
-### Why LightGBM Remains the Champion Model
+### Champion Model Approval
 
-**1. Highest Average Precision**
+After comprehensive validation, LightGBM remains the preferred model.
 
-LightGBM achieved the highest Test AP Score (**{best_ap:.3f}**),
-indicating superior capability in identifying true default customers.
+✅ Highest Test AP Score (**{best_ap:.4f}**)
 
-**2. Strong Improvement Over Baseline**
+✅ Strong Generalization Capability
 
-The dataset default rate is approximately 22.1%.
+✅ Low Overfitting Risk
 
-A random classifier would achieve an AP of only 0.221.
+✅ Fast Inference Performance
 
-LightGBM achieved **0.555 AP**, representing an improvement of approximately **{improvement:.0f}%**.
+✅ Suitable for Real-Time Credit Risk Scoring
 
-**3. Better Evaluation Metric**
+### Final Conclusion
 
-Because credit default prediction is an imbalanced classification problem,
-Average Precision provides a more realistic assessment than ROC-AUC.
+For imbalanced credit default prediction problems,
+Average Precision is a more appropriate performance metric than ROC-AUC.
 
-AP focuses on the quality of identifying actual risky customers,
-which is directly aligned with banking risk management objectives.
+LightGBM achieved:
 
-**4. Production Readiness**
+• AP = {best_ap:.4f}
 
-LightGBM combines:
+• Baseline = {baseline_ap:.4f}
 
-• Highest AP Score
+• Improvement = {improvement:.1f}%
 
-• Low Overfitting Gap
+• Lift = {lift:.2f}x
 
-• Fast inference speed
-
-• Strong generalization capability
-
-Therefore, LightGBM is approved as the Champion Model for deployment
-within the AI-powered Credit Risk Early Warning System.
+The model is therefore approved as the Champion Model
+for deployment within the AI-Powered Credit Risk Early Warning System.
 """)
