@@ -15,7 +15,7 @@ with st.sidebar:
 # ====================================
 # 1. 首頁大標題與專案背景
 # ====================================
-st.title("🏦 AI-Powered Credit Risk & Default Intelligence System©️")
+st.title("🏦 AI-Powered Credit Risk & Default Intelligence System")
 
 st.markdown("""
 ### 📊DSF504 The Practice of Big Data and Analysis in the Financial Industry
