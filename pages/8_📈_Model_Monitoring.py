@@ -18,7 +18,7 @@ st.set_page_config(
 with st.sidebar:
     st.markdown("## 🏦 AI-Powered Credit Risk & Default Intelligence System")
     st.caption(
-        "DSF504 The Practice of Big Data and Analysis in the Financial Industry\n\nSemester Project • Team 8"
+        "DSF504 The Practice of Big Data and Analysis in the Financial Industry Semester Project • Team 8"
     )
     st.markdown("---")
 
