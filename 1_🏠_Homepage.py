@@ -7,7 +7,7 @@ import pandas as pd
 st.set_page_config(page_title="AI Credit Risk System", page_icon="🏦", layout="wide")
 
 with st.sidebar:
-    st.markdown("## 🏦 AI-Powered Credit Risk & Default Intelligence System")
+    st.markdown("## 🏦 AI-Powered Credit Risk & Default Intelligence System©️")
     st.caption("DSF504 The Practice of Big Data and Analysis in the Financial Industry Semester Project • Team 8")
     st.markdown("---")
     st.info("💡 **Tip:** Navigate through the sidebar to explore data insights, model performance, and interactive risk scoring.")
