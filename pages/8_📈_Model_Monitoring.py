@@ -206,12 +206,13 @@ with col3:
         ]
     })
 
-    fig_base = px.bar(
+fig_base = px.bar(
         compare,
         x="Metric",
         y="Score",
         text_auto=".3f",
         color="Metric",
+        color_discrete_sequence=["#8c8c8c", "#8EBA42"], # 灰色代表基準，綠色代表你們的模型
         title="Average Precision vs Baseline"
     )
 
