@@ -206,7 +206,7 @@ with col3:
         ]
     })
 
-fig_base = px.bar(
+    fig_base = px.bar(
         compare,
         x="Metric",
         y="Score",
