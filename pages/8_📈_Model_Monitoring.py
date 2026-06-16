@@ -197,7 +197,7 @@ with col3:
 
         "Metric":[
             "Random Guess",
-            "LightGBM"
+            "⭐LightGBM"
         ],
 
         "Score":[
