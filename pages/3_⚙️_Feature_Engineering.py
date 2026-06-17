@@ -293,7 +293,7 @@ with tab4:
     )
 
     st.info("""
-###📌 Correlation Insights
+📌 Correlation Insights
 
 The strongest relationships are concentrated among behavioral financial variables:
 
