@@ -323,7 +323,7 @@ st.markdown("---")
 st.subheader("🎯 Why Average Precision Instead of ROC-AUC?")
 
 st.warning(f"""
-###📌 Credit Risk Perspective
+### 📌Credit Risk Perspective
 
 The dataset contains only **22.1% default customers**.
 
