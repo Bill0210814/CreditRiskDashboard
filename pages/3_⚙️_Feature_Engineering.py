@@ -109,7 +109,7 @@ The goal is to predict customer default probability and support:
 """)
 
     st.warning("""
-⚠️ Class Imbalance Notice
+### ⚠️ Class Imbalance Notice
 
 Default customers account for approximately 22% of the dataset.
 
