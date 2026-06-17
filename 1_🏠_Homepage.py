@@ -107,7 +107,7 @@ c1, c2, c3, c4 = st.columns(4)
 with c1: st.metric("Dataset Size", "30,000")
 with c2: st.metric("Features Engineered", "34")  
 with c3: st.metric("Champion Model", "LightGBM")
-with c4: st.metric("Test ROC-AUC", "0.7827")
+with c4: st.metric("Average Precision", "0.5554")
 
 st.markdown("<br>", unsafe_allow_html=True)
 
