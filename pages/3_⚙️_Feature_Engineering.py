@@ -93,7 +93,7 @@ monthly bills, and payment history.
 
     st.info("""
 
-💡 Business Objective
+### 💡Business Objective
 
 The goal is to predict customer default probability and support:
 
