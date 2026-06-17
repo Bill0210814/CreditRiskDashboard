@@ -150,7 +150,7 @@ st.markdown("---")
 st.subheader("🛡️ Governance Recommendation & Mitigation")
 
 st.warning(f"""
-### AI Governance Assessment & Findings
+### 💡AI Governance Assessment & Findings
 
 * **Demographic Parity Check:** ✅ **Passed**. The prediction rate gap is **{parity_gap*100:.2f}%**, well within the industry standard 5% threshold. No systemic bias in flagging high-risk customers based on age.
 * **Equal Opportunity Check:** ⚠️ **Flagged for Monitoring**. The Recall Gap is **{recall_gap*100:.2f}%**, slightly exceeding the strict 5% threshold.
