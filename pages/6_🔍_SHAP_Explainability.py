@@ -83,7 +83,7 @@ plt.clf()
 st.markdown("---")
 
 st.success("""
-### Key Risk Driver Findings
+### 📌Key Risk Driver Findings
 
 #### 1. Core Risk Indicators
 **PAY_0** and **consecutive_delay** are the most influential predictors of default risk.
@@ -126,7 +126,7 @@ are substantially more likely to default in the following billing cycle.
 
 ---
 
-#### Business Interpretation
+#### 💡Business Interpretation
 
 The results indicate that customer default risk is primarily driven by
 behavioral repayment patterns rather than demographic characteristics.
