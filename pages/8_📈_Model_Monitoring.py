@@ -323,7 +323,7 @@ st.markdown("---")
 st.subheader("🎯 Why Average Precision Instead of ROC-AUC?")
 
 st.warning(f"""
-### Credit Risk Perspective
+###📌 Credit Risk Perspective
 
 The dataset contains only **22.1% default customers**.
 
@@ -335,7 +335,7 @@ For highly imbalanced classification problems:
 
 • AP therefore provides a more realistic measure of risk detection quality.
 
-### Performance Comparison
+### 📌Performance Comparison
 
 Random Baseline AP = **{baseline_ap:.4f}**
 
@@ -357,7 +357,7 @@ st.markdown("---")
 st.subheader("💼 Executive Interpretation")
 
 st.success(f"""
-### Champion Model Approval
+### 💡Champion Model Approval
 
 After comprehensive validation, LightGBM remains the preferred model.
 
@@ -371,7 +371,7 @@ After comprehensive validation, LightGBM remains the preferred model.
 
 ✅ Suitable for Real-Time Credit Risk Scoring
 
-### Final Conclusion
+###💡 Final Conclusion
 
 For imbalanced credit default prediction problems,
 Average Precision is a more appropriate performance metric than ROC-AUC.
