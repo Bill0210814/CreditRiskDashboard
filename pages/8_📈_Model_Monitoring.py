@@ -371,7 +371,7 @@ After comprehensive validation, LightGBM remains the preferred model.
 
 ✅ Suitable for Real-Time Credit Risk Scoring
 
-###💡 Final Conclusion
+### 💡 Final Conclusion
 
 For imbalanced credit default prediction problems,
 Average Precision is a more appropriate performance metric than ROC-AUC.
