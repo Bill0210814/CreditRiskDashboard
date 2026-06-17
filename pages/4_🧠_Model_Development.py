@@ -173,7 +173,7 @@ st.markdown("---")
 st.subheader("💼 Business Interpretation")
 
 st.success(f"""
-### Why Average Precision & Threshold Optimization Matters
+### 💡Why Average Precision & Threshold Optimization Matters
 
 Credit default prediction is a highly imbalanced classification problem. Only **{baseline:.1%}** of customers belong to the default class. Therefore, **Average Precision (AP)** provides a much more realistic assessment than ROC-AUC, as it strictly evaluates the model's ability to catch true defaulters without being inflated by the large volume of safe customers.
 
