@@ -215,11 +215,11 @@ if st.button("🚀 Predict Risk", use_container_width=True):
     with rec_col:
         st.header("💼 Business Recommendation")
         if prob < 0.30:
-            st.success("Recommended Action:\n\n• Maintain current credit limit\n• Eligible for promotional offers\n• Low monitoring frequency")
+            st.success("💡Recommended Action:\n\n• Maintain current credit limit\n• Eligible for promotional offers\n• Low monitoring frequency")
         elif prob < 0.60:
-            st.warning("Recommended Action:\n\n• Monitor repayment behavior\n• Consider temporary limit freeze\n• Monthly risk review")
+            st.warning("💡Recommended Action:\n\n• Monitor repayment behavior\n• Consider temporary limit freeze\n• Monthly risk review")
         else:
-            st.error("Recommended Action:\n\n• High default warning\n• Immediate intervention\n• Credit line reduction\n• Escalate to risk management team")
+            st.error("💡Recommended Action:\n\n• High default warning\n• Immediate intervention\n• Credit line reduction\n• Escalate to risk management team")
 
     with driver_col:
         st.header("📊 Key Risk Drivers")
