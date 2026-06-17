@@ -93,7 +93,7 @@ st.markdown("---")
 st.subheader("📊 Model Performance: Average Precision & PR Curves")
 
 # 匯入團隊製作的精美靜態圖表
-st.image("images/pr_curves.jpg", caption="各模型 Average Precision 效能比較與 PR 曲線疊加圖", use_container_width=True)
+st.image("images/pr_curves.jpg", caption="Model Performance Comparison: Average Precision & Overlaid PR Curves", use_container_width=True)
 
 st.markdown("<br>", unsafe_allow_html=True)
 
